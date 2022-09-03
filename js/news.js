@@ -7,7 +7,7 @@ const allCategories = async () =>{
 
 
 const displayCategories = linksItem =>{
-  console.log(linksItem);
+  // console.log(linksItem);
   const newDivField = document.getElementById('all-categories');
   linksItem.forEach(link => {
     const creatediv = document.createElement('ul');
@@ -40,19 +40,28 @@ const displayAllNews = news =>{
         createNewsDiv.classList.add('row');
         createNewsDiv.innerHTML = `
         <div class="col-md-4">
-        <img src="" class="img-fluid rounded-start" alt="...">
+        <img src="${allNewses.thumbnail_url}" class="img-fluid rounded-start" alt="...">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <h5 class="card-title mt-3">${allNewses.title}</h5>
+          <p class="card-text">${allNewses.details}</p>
+          <div class="d-flex">
+          <div>
+          <img src="${allNewses.author.img}" class="img-fluid rounded-start" style="width: 50px; height:50px;">
+         <p class="card-text">${allNewses.author.name}</p>
+         </div>
+         <div class="rating">
+         <h5> view : ${allNewses.total_view}</h5>
+         <p><i class="arrow right"></i></p>
+         </div>
+         </div>
         </div>
       </div>
         `;
         newsItem.appendChild(createNewsDiv);
 
-
+        
     } )
 }
 
@@ -82,3 +91,14 @@ showallNews();
 allCategories();
 
 
+
+// {"status":true,"data":
+// [
+//   {"_id":"0282e0e58a5c404fbd15261f11c2ab6a",
+// "others_info":
+// {"is_todays_pick":false,"is_trending":true},
+// "category_id":"01","rating":{"number":4.5,"badge":"Excellent"},
+// "total_view":488,
+// "title":"Biden Pledges Nearly $3 Billion To Ukraine In Largest U.S. Military Aid Package Yet",
+// "author":{"name":"Jimmy Dane","published_date":"2022-08-24 17:27:34",
+// "img":"https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-

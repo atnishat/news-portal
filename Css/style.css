@@ -21,3 +21,26 @@ header{
 .all-links img{
     margin-top: 15px;
 }
+.row {
+    margin-bottom: 100px;
+    border: 1px solid gainsboro;
+}
+
+.rating {
+        margin-left: 200px;
+        margin-top: 20px;
+    }
+.arrow {
+        border: solid black;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px;
+        margin-left: 350px;
+        margin-bottom: 15px;
+      }
+      
+.right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+      }
+      
