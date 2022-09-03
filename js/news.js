@@ -8,6 +8,7 @@ const allCategories = async () =>{
 
 const displayCategories = (linksItem) =>{
   const newDivField = document.getElementById('all-categories');
+  // console.log(linksItem);
   linksItem.forEach(link => {
     const creatediv = document.createElement('ul');
     creatediv.classList.add('navbar-nav');
@@ -16,6 +17,8 @@ const displayCategories = (linksItem) =>{
     <a class="nav-link active" aria-current="page"  onclick="showallNews('${link.category_id}')">${link.category_name}</a>
   </li> `;
   newDivField.appendChild(creatediv);
+  // start loader
+  togglerSpinner(true);
 });
 }
 
@@ -24,6 +27,7 @@ const showallNews = async(category_id) =>{
     const url = ` https://openapi.programming-hero.com/api/news/category/${category_id}`
     const res = await fetch(url)
     const data = await res.json()
+    // console.log(data);
     displayAllNews(data.data)
 
 }
@@ -32,6 +36,7 @@ const displayAllNews = news =>{
     const newsItem = document.getElementById('show-all-news');
     newsItem.textContent ='';
     news.forEach(allNewses =>{
+      // console.log(allNewses);
         const createNewsDiv = document.createElement('div');
         createNewsDiv.classList.add('row');
         createNewsDiv.innerHTML = `
@@ -52,14 +57,45 @@ const displayAllNews = news =>{
          <p><i class="arrow right"></i></p>
          </div>
          </div>
-         <button data-bs-toggle="modal" data-bs-target="#phoneDetailModal" class="bg-primary text-white">Show Details</button>
+         <button   data-bs-toggle="modal" data-bs-target="#phoneDetailModal" class="bg-primary text-white">Show Details</button>
         </div>
       </div>
         `;
         newsItem.appendChild(createNewsDiv);
        
-        
+        // stop loader
+        togglerSpinner(false);
     } )
+}
+// onclick="newDetails('${allNewses.news_id}')"
+
+
+const togglerSpinner = isLoader =>{
+  const loaderSection = document.getElementById('loader');
+  if (isLoader ) {
+      loaderSection.classList.remove('d-none');
+  }
+  else{
+      loaderSection.classList.add('d-none');
+  }
+}
+
+
+const newDetails = async()=> {
+  const url = `https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f11c2ab6a`
+  const res = await fetch(url)
+  const data = await res.json()
+  displayNewsDetails(data.data[0]);
+
+} 
+const displayNewsDetails = detailsNews =>{
+console.log(detailsNews);  
+const displayField = document.getElementById('phoneDetailModalLabel');
+displayField.innerText = detailsNews.title;
+const fullNewsField = document.getElementById('full-news');
+fullNewsField.innerText = detailsNews.rating.number
+
+
 }
 
 
@@ -70,6 +106,10 @@ const displayAllNews = news =>{
 
 
 
+
+
+
+newDetails();
 
 
 showallNews();
