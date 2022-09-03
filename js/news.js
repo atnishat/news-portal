@@ -14,7 +14,7 @@ const displayCategories = linksItem =>{
     creatediv.classList.add('navbar-nav');
     creatediv.innerHTML = `
 
-    <li class="nav-item" id="full-news">
+    <li class="nav-item" id="full-news" onclick="somefunc('categoryId')">
     <a class="nav-link active" aria-current="page" href="#">${link.category_name}</a>
   </li>
 
