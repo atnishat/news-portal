@@ -35,6 +35,30 @@ const displayAllNews = news =>{
     // console.log(news);
     const newsItem = document.getElementById('show-all-news');
     newsItem.textContent ='';
+
+
+
+
+
+  const noPhone = document.getElementById('no-found-message');
+    if(news.length === 0){
+
+      noPhone.classList.remove('d-none');
+    }
+    else{
+        noPhone.classList.add('d-none');
+    }
+
+
+
+
+
+
+
+
+
+
+
     news.forEach(allNewses =>{
       // console.log(allNewses);
         const createNewsDiv = document.createElement('div');
@@ -92,8 +116,7 @@ const displayNewsDetails = detailsNews =>{
 console.log(detailsNews);  
 const displayField = document.getElementById('phoneDetailModalLabel');
 displayField.innerText = detailsNews.title;
-const fullNewsField = document.getElementById('full-news');
-fullNewsField.innerText = detailsNews.rating.number
+
 
 
 }
